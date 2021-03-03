@@ -1,0 +1,13 @@
+{
+    "filetypes": {
+        "text": [
+            ".txt", ".docx", ".doc", ".md"
+        ],
+        "executables" : [
+            ".msi", ".exe"
+        ],
+        "source_code" : [
+            ".py", ".java", ".c", ".cpp", ".h", ".hpp"
+        ]
+    }
+}
