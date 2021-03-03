@@ -1,28 +1,49 @@
 """Directory Watcher for Windows"""
 
 import os
+import shutil
 import json
+import threading
 
 # Deafault directory is the downloads folder
 DEFAULT_DIR = os.path.join(os.getenv("USERPROFILE"), "Downloads")
 
 
 def load_filetypes(src):
-    # load the filetypes from the source, src
+    """load the filetypes from the source, src"""
     try:
         file = open(src, 'r')
     except FileNotFoundError:
-        raise FileNotFoundError(f"File {src} was not found, check if the file exists an\
-            you entered the correct path")
+        raise FileNotFoundError(
+            f"File {src} was not found, check if the file exists and you entered the correct path"
+        )
     loaded = json.loads(file.read())
     file.close()
     return loaded['filetypes']
 
 
-def watch(_dir, filetypes):
-    # Watch and sort files in the specified directory
-    pass
+def watchdog(_dir, filetypes: dict):
+    """Watch and sort files in the specified directory"""
+    while True:
+        for file in os.listdir(_dir):
+            for dir_name, filetype in filetypes.items():
+                if file.endswith(filetype):
+                    if os.path.isdir(os.path.join(DEFAULT_DIR, dir_name)):
+                        # If the path exists, then move
+                        shutil.move(os.path.join(DEFAULT_DIR, file),
+                                    os.path.join(DEFAULT_DIR, filetype, file))
+                    else:
+                        os.mkdir(os.path.join(DEFAULT_DIR, filetype))
+                        shutil.move(os.path.join(DEFAULT_DIR, file),
+                                    os.path.join(DEFAULT_DIR, filetype, file))
 
 
-FILE_TYPES = load_filetypes('./filetypes.json')
-print(FILE_TYPES)
+def main():
+    FILE_TYPES = load_filetypes('./filetypes.json')
+    watchgod_thread = threading.Thread(
+        target=watchdog, args=(DEFAULT_DIR, FILE_TYPES))
+    watchgod_thread.start()
+
+
+if __name__ == "__main__":
+    main()
