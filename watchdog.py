@@ -1,4 +1,4 @@
-"""Directory Watcher for Windows"""
+"""Directory Watcher for Windows, (Should Work on Linux and Mac)"""
 
 import os
 import shutil
