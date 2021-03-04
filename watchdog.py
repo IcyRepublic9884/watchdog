@@ -27,15 +27,17 @@ def watchdog(_dir, filetypes: dict):
     while True:
         for file in os.listdir(_dir):
             for dir_name, filetype in filetypes.items():
-                if file.endswith(filetype):
-                    if os.path.isdir(os.path.join(DEFAULT_DIR, dir_name)):
-                        # If the path exists, then move
-                        shutil.move(os.path.join(DEFAULT_DIR, file),
-                                    os.path.join(DEFAULT_DIR, filetype, file))
-                    else:
-                        os.mkdir(os.path.join(DEFAULT_DIR, filetype))
-                        shutil.move(os.path.join(DEFAULT_DIR, file),
-                                    os.path.join(DEFAULT_DIR, filetype, file))
+                for file_ext in filetype:
+                    if file.endswith(file_ext):
+                        if os.path.isdir(os.path.join(DEFAULT_DIR, dir_name)):
+                            # If the path exists, then move
+                            shutil.move(os.path.join(DEFAULT_DIR, file),
+                                        os.path.join(DEFAULT_DIR, dir_name, file))
+                        else:
+                            # else, create it, then move
+                            os.mkdir(os.path.join(DEFAULT_DIR, dir_name))
+                            shutil.move(os.path.join(DEFAULT_DIR, file),
+                                        os.path.join(DEFAULT_DIR, dir_name, file))
 
 
 def main():
@@ -46,4 +48,6 @@ def main():
 
 
 if __name__ == "__main__":
+    print("Starting Watchdog 1.0")
+    print(f"Watching Directory {DEFAULT_DIR}")
     main()
