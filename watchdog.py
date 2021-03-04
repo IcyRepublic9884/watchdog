@@ -25,9 +25,6 @@ def load_filetypes(src):
 def watchdog(_dir, filetypes: dict):
     """Watch and sort files in the specified directory"""
     while True:
-        if filetypes != load_filetypes():
-            print("Detected Change in filetypes.json, reloading")
-            filetypes = load_filetypes()
         for file in os.listdir(_dir):
             for dir_name, filetype in filetypes.items():
                 for file_ext in filetype:

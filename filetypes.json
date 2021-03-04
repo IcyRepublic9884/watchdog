@@ -7,7 +7,7 @@
             ".msi", ".exe"
         ],
         "source_code" : [
-            ".py", ".java", ".c", ".cpp", ".h", ".hpp"
+            ".py", ".java", ".c", ".cpp", ".h", ".hpp", "jl"
         ],
         "test": [
             ".pdf"
@@ -17,6 +17,12 @@
         ],
         "photos": [
             ".jpg", ".jpeg", ".png"
+        ],
+        "incomplete_downloads": [
+            ".crdownload"
+        ],
+        "disk_images": [
+            ".iso"
         ]
     }
 }
