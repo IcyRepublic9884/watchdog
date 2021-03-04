@@ -24,6 +24,15 @@ If you open up the `filetypes.json` you will be greeted with something that look
         ],
         "source_code" : [
             ".py", ".java", ".c", ".cpp", ".h", ".hpp"
+        ],
+        "test": [
+            ".pdf"
+        ],
+        "multimedia": [
+            ".mp4", ".mkv", ".wav", ".mp3"
+        ],
+        "photos": [
+            ".jpg", ".jpeg", ".png"
         ]
     }
 }
