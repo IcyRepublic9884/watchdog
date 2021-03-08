@@ -3,7 +3,7 @@ Implementation of the directory watcher in python. Sorts the directorie's files 
 `filetypes.json` file
 
 ## Usage
-This script is mostly made to run on windows, but should work just as well on Mac or Linux.<br>
+This script is mostly made to run on windows, but should work just as well on Mac or Linux (With Some Tweaking 😉).<br>
 
 Linux and Mac.<br>
 `$ python3 watchdog.py`
